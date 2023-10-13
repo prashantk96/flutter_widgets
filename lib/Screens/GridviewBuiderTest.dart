@@ -1,4 +1,7 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
+import 'package:flutter_widget/Screens/StatefulBuilderTest.dart';
 
 class GridViewBuiderTest extends StatefulWidget {
   const GridViewBuiderTest({super.key});
@@ -24,20 +27,37 @@ class _GridViewBuiderTestState extends State<GridViewBuiderTest> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Images')),
-      body: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2),
-          itemCount: Images.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.all(1),
-              child: Container(
-                  child: Image.network(
-                Images[index],
-                fit: BoxFit.cover,
-              )),
-            );
-          }),
+      body: Column(
+        children: [
+          Expanded(
+            child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+                itemCount: Images.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(1),
+                    child: Container(
+                        child: Image.network(
+                      Images[index],
+                      fit: BoxFit.cover,
+                    )),
+                  );
+                }),
+          ),
+          Center(
+            child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) {
+                      return const StatefulBuilderTest();
+                    }),
+                  );
+                },
+                child: const Text('StatefulBuilderTest')),
+          )
+        ],
+      ),
     );
   }
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 import 'package:flutter_widget/Screens/ListeviewSaperatedTest.dart';
 
@@ -9,6 +11,7 @@ class ListViewBuilderTest extends StatefulWidget {
 }
 
 class _ListViewBuilderTestState extends State<ListViewBuilderTest> {
+  // ignore: non_constant_identifier_names
   List Contacts = [
     "Sadashiv Ram",
     "Adanand Khire",

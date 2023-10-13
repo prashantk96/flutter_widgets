@@ -44,20 +44,27 @@ class _ListViewSeperatedTestState extends State<ListViewSeperatedTest> {
           child: Column(children: [
         Expanded(
           child: Container(
-            child: ListView.separated(
-                itemCount: Contacts.length,
-                separatorBuilder: (context, index) {
-                  return const Divider();
-                },
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: CircleAvatar(
-                      child: Text(Contacts[index].toString()[0]),
-                    ),
-                    title: Text(Contacts[index]),
-                    trailing: const Icon(Icons.call),
-                  );
-                }),
+            child: RefreshIndicator(
+              onRefresh: () async {
+                setState(() {
+                  Contacts.add('New Contact');
+                });
+              },
+              child: ListView.separated(
+                  itemCount: Contacts.length,
+                  separatorBuilder: (context, index) {
+                    return const Divider();
+                  },
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      leading: CircleAvatar(
+                        child: Text(Contacts[index].toString()[0]),
+                      ),
+                      title: Text(Contacts[index]),
+                      trailing: const Icon(Icons.call),
+                    );
+                  }),
+            ),
           ),
         ),
         Center(
